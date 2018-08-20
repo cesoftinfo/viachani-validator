@@ -14,5 +14,9 @@
   },
   "devDependencies": {
     "babel-preset-react-native": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cesoftinfo/viachani-validator.git"
   }
 }
