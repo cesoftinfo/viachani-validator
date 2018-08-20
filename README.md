@@ -35,7 +35,27 @@ class MyApp extends React.Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+    inl: {
+        flexDirection:'row',
+        paddingVertical: 3
 
+    },
+    exp: {
+        width:90,
+        fontSize:16,
+        fontWeight:'500',
+        color:'black',
+        marginRight: 10,
+        height: 30,
+        paddingVertical: 3
+    }
+});
 ```
 ![alt text](https://s8.postimg.cc/7jec18ng5/image.jpg)
 ## License
