@@ -37,7 +37,7 @@ class MyApp extends React.Component {
 }
 
 ```
-![alt text](https://github.com/cesoftinfo/viachani-validator/blob/master/image.jpg)
+![alt text](https://s8.postimg.cc/7jec18ng5/image.jpg)
 ## License
 
 [MIT](http://vjpr.mit-license.org)
