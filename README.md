@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
 * Numeric
 * minLength
 * maxLength
+* Date
 
 ## License
 
@@ -90,6 +91,4 @@ FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TOR
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 =======
-# viachani-validator
-React native text input with validaton
->>>>>>> 9899fec0c5752d1429d52f841aa2df5ff6f7f262
+
