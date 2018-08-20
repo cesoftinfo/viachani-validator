@@ -58,6 +58,14 @@ const styles = StyleSheet.create({
 });
 ```
 ![alt text](https://s8.postimg.cc/7jec18ng5/image.jpg)
+
+## Supported Validation Rules
+
+* Alphanumeric
+* Numeric
+* minLength
+* maxLength
+
 ## License
 
 [MIT](http://vjpr.mit-license.org)
