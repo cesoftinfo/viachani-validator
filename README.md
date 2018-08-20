@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Description
 
 React native text input component with label and defined validation rules.
