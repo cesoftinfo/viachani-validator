@@ -57,55 +57,12 @@ class Viachani extends Component {
             switch(field){
                 case 'alphanumeric':
                     action(alph);
-                    // if(alph.test(text))
-                    // {
-                    //     this.setState({
-                    //         fieldTextValidate: true,
-                    //         fieldText: text
-                    //     })
-                    // }
-                    // else{
-                    //     this.setState({
-                    //         fieldTextValidate: false,
-                    //         fieldText: text
-                    //     })
-                    //     return true;
-                    // }
-
                     break;
                 case 'datedmy':
                     action(dateformatdmy);
-                    // if(alph.test(text))
-                    // {
-                    //     this.setState({
-                    //         fieldTextValidate: true,
-                    //         fieldText: text
-                    //     })
-                    // }
-                    // else{
-                    //     this.setState({
-                    //         fieldTextValidate: false,
-                    //         fieldText: text
-                    //     })
-                    //     return true;
-                    // }
                     break;
                 case 'email':
                     action(email);
-                    // if(email.test(text))
-                    // {
-                    //     this.setState({
-                    //         fieldTextValidate: true,
-                    //         fieldText: text
-                    //     })
-                    // }
-                    // else{
-                    //     this.setState({
-                    //         fieldTextValidate: false,
-                    //         fieldText: text
-                    //     })
-                    //     return true;
-                    // }
                     break;
                 default:
                     if(field.maxLength) {
