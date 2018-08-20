@@ -20,7 +20,18 @@ import Viachani from 'viachani-validator';
 class MyApp extends React.Component {
   render() {
     return (
-     <Viachani label={'custom'} rules={['alphanumeric',{maxLength:5},{minLength:2}]} editableProp={true}/>
+     <Viachani label={'Name:'}
+                        editable={true}
+                        viewStyles={styles.inl}
+                        textfieldStyles={styles.exp}
+                        rules={['alphanumeric',{maxLength:5},{minLength:2}]}
+                        />
+     <Viachani label={'Email:'}
+                        editable={true}
+                        viewStyles={styles.inl}
+                        textfieldStyles={styles.exp}
+                        rules={['email']}
+              />
     );
   }
 }
