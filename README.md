@@ -21,14 +21,14 @@ class MyApp extends React.Component {
   render() {
     return (
      <Viachani label={'Name:'}
-                        editable={true}
-                        textfieldStyles={styles.exp}
-                        rules={['alphanumeric',{maxLength:5},{minLength:2}]}
-                        />
+               editable={true}
+               textfieldStyles={styles.exp}
+               rules={['alphanumeric',{maxLength:5},{minLength:2}]}
+               />
      <Viachani label={'Email:'}
-                        editable={true}
-                        textfieldStyles={styles.exp}
-                        rules={['email']}
+               editable={true}
+               textfieldStyles={styles.exp}
+               rules={['email']}
               />
     );
   }
@@ -60,6 +60,8 @@ const styles = StyleSheet.create({
 * maxLength
 * Date
 
+
+
 | Rule        | Description                                                                                   |
 |-------------|-----------------------------------------------------------------------------------------------|
 | datedmy     | check if the string is a  date format. It accepts dd.mm.yyy  dd-mm-yyy and dd/mm/yyyy format. |
@@ -68,6 +70,10 @@ const styles = StyleSheet.create({
 | numeric     | check if the string is an numeric value.                                                      |
 | minLength   | check if string is at least x characters long.                                                |
 | maxLength   | check if string contains maximum x characters.                                                |                                                     |
+
+
+
+
 ## License
 
 [MIT](http://vjpr.mit-license.org)
