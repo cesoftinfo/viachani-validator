@@ -1,3 +1,8 @@
+[![validator_logo.png](https://s8.postimg.cc/ox8f9715x/validator_logo.png)](https://postimg.cc/image/uy6469ns1/)
+
+[![NPM Version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Downloads Stats][npm-downloads]][npm-url]
 
 # Description
 
