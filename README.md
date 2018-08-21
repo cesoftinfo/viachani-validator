@@ -22,13 +22,11 @@ class MyApp extends React.Component {
     return (
      <Viachani label={'Name:'}
                         editable={true}
-                        viewStyles={styles.inl}
                         textfieldStyles={styles.exp}
                         rules={['alphanumeric',{maxLength:5},{minLength:2}]}
                         />
      <Viachani label={'Email:'}
                         editable={true}
-                        viewStyles={styles.inl}
                         textfieldStyles={styles.exp}
                         rules={['email']}
               />
@@ -41,11 +39,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-    inl: {
-        flexDirection:'row',
-        paddingVertical: 3
-
-    },
     exp: {
         width:90,
         fontSize:16,
@@ -67,6 +60,14 @@ const styles = StyleSheet.create({
 * maxLength
 * Date
 
+| Rule        | Description                                                                                   |
+|-------------|-----------------------------------------------------------------------------------------------|
+| datedmy     | check if the string is a  date format. It accepts dd.mm.yyy  dd-mm-yyy and dd/mm/yyyy format. |
+| alphaumeric | check if the string is an alphanumeric value.                                                 |
+| email       | check if the string is an email.                                                              |
+| numeric     | check if the string is an numeric value.                                                      |
+| minLength   | check if string is at least x characters long.                                                |
+| maxLength   | check if string contains maximum x characters.                                                |                                                     |
 ## License
 
 [MIT](http://vjpr.mit-license.org)

@@ -23,11 +23,6 @@ class Viachani extends Component {
             PropTypes.number,
             PropTypes.shape({}),
         ]).isRequired,
-        viewStyles: PropTypes.oneOfType([
-            PropTypes.array,
-            PropTypes.number,
-            PropTypes.shape({}),
-        ]),
         editable: PropTypes.bool.isRequired,
         label: PropTypes.string.isRequired,
     };
@@ -98,10 +93,10 @@ class Viachani extends Component {
 
     }
     render = () => {
-        const { textfieldStyles, textinputStyles, editable, viewStyles, rules, label, placeholder } = this.props;
+        const { textfieldStyles, editable, rules, label, placeholder } = this.props;
 
         return (
-            <View style={viewStyles}>
+            <View style={styles.inl}>
                 <TouchableOpacity>
                     <Text style={textfieldStyles}>{label}</Text>
                 </TouchableOpacity>
@@ -119,6 +114,11 @@ class Viachani extends Component {
     }
 }
 const styles = StyleSheet.create({
+    inl: {
+        flexDirection:'row',
+        paddingVertical: 3
+
+    },
     exp: {
         width:90,
         fontSize:16,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
         paddingVertical: 3
     },
     expText: {
-        backgroundColor:'#E0E0E0',
+        backgroundColor:'rgba(255, 255,255,0.2)',
         borderRadius: 5,
         paddingHorizontal: 6,
         width:200,
