@@ -137,7 +137,7 @@ class Viachani extends Component {
                 </TouchableOpacity>
                 <TextInput style={[styles.expText, textfieldStyles,
                     !this.state.fieldTextValidate ? styles.error : null]}
-                           underlineColorAndroid='rgba(224,224,224,0.2)'
+                           underlineColorAndroid='rgba(0,0,0,0)'
                            placeholder={placeholder}
                            editable={editable}
                            value={this.state.fieldText}
