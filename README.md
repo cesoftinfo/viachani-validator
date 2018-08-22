@@ -1,8 +1,8 @@
 [![validator_logo.png](https://s8.postimg.cc/ox8f9715x/validator_logo.png)](https://postimg.cc/image/uy6469ns1/)
 
 [![NPM Version][npm-image]][npm-url]
-[![Linux Build][travis-image]][travis-url]
-[![Test Coverage][coveralls-image]][coveralls-url]
+[![Build Status][travis-image]][travis-url]
+[![Downloads Stats][npm-downloads]][npm-url]
 
 # Description
 
@@ -25,37 +25,50 @@ import Viachani from 'viachani-validator';
 class MyApp extends React.Component {
   render() {
     return (
-     <Viachani label={'Name:'}
-               editable={true}
-               textfieldStyles={styles.exp}
-               rules={['alphanumeric',{maxLength:5},{minLength:2}]}
-               />
-     <Viachani label={'Email:'}
-               editable={true}
-               textfieldStyles={styles.exp}
-               rules={['email']}
+         <View style={styles.container}>
+              <Viachani label={'Name:'}
+                        editable={true}
+                        placeholder={'name'}
+                        textfieldStyles={styles.text}
+                        rules={['alphanumeric',{maxLength:5},{minLength:2}]}
+                        />
+              <Viachani label={'Email:'}
+                        editable={true}
+                        placeholder={'example@dot.com'}
+                        textfieldStyles={styles.text}
+                        rules={['email',{maxLength:10},'required']}
               />
+              <Viachani label={'Date:'}
+                        editable={true}
+                        placeholder={'12/04/2012'}
+                        textfieldStyles={styles.text}
+                        rules={['date/dmy']}
+              />
+          </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+           flex: 1,
+           alignItems: 'center',
+           justifyContent: 'center',
   },
-    exp: {
-        width:90,
-        fontSize:16,
-        fontWeight:'500',
-        color:'black',
-        marginRight: 10,
-        height: 30,
-        paddingVertical: 3
-    }
+  exp: {
+           width:90,
+           fontSize:16,
+           fontWeight:'500',
+           color:'black',
+           marginRight: 10,
+           height: 30,
+           paddingVertical: 3
+       },
+  text:{
+           backgroundColor: '#E5E7E9'
+       }
 });
 ```
-![alt text](https://s8.postimg.cc/7jec18ng5/image.jpg)
+![alt text](https://s8.postimg.cc/lykt79gd1/rsz_img.png)
 
 ## Supported Validation Rules
 
@@ -64,19 +77,20 @@ const styles = StyleSheet.create({
 * minLength
 * maxLength
 * Date
+* Empty string
 
 
 ## Validators
 
 | Rule        | Description                                                                                   |
 |-------------|-----------------------------------------------------------------------------------------------|
-| datedmy     | check if the string is a  date format. It accepts dd.mm.yyy  dd-mm-yyy and dd/mm/yyyy format. |
+| date/dmy     | check if the string is a  date format. It accepts dd.mm.yyy  dd-mm-yyy and dd/mm/yyyy format. |
 | alphaumeric | check if the string is an alphanumeric value.                                                 |
 | email       | check if the string is an email.                                                              |
 | numeric     | check if the string is an numeric value.                                                      |
 | minLength   | check if string is at least x characters long.                                                |
 | maxLength   | check if string contains maximum x characters.                                                |                                                     |
-
+| required    | check if string is empty.                                                                     |
 
 
 
@@ -105,9 +119,8 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 ## Keywords
 
-[npm-image]: https://img.shields.io/npm/v/live-xxx.svg
-[npm-url]: https://npmjs.org/package/live-xxx
-[travis-image]: https://img.shields.io/travis/live-js/live-xxx/master.svg
-[travis-url]: https://travis-ci.org/live-js/live-xxx
-[coveralls-image]: https://img.shields.io/coveralls/live-js/live-xxx/master.svg
-[coveralls-url]: https://coveralls.io/r/live-js/live-xxx?branch=master
+[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/viachani-validator
+[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
+[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
