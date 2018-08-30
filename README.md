@@ -140,6 +140,19 @@ const styles = StyleSheet.create({
 | required    | check if string is empty.                                                                     |
 
 
+## Props
+
+| Name            | Type    | Default | Required | Description                |
+|-----------------|---------|---------|----------|----------------------------|
+| label           | string  | null    | yes      | set component label.       |
+| placeholder     | string  | null    | no       | set placeholder text.      |
+| editable        | boolean | yes     | no       | make component editable.   |
+| value           | string  | null    | yes      | set component value.       |
+| numKeyboard     | boolean | false   | no       | set numeric keyboard.      |
+| myOnChageText   | func    |         | yes      | set state value on change. |
+| textfieldStyles | array   | null    | no       | custom text filed styling. |
+| rules           | array   | null    | no       | set validation rules.      |
+| error           | array   |         | yes      | set custom error message.  |
 
 ## License
 
