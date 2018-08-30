@@ -3,12 +3,12 @@ import React, {Component} from 'react';
 import {StyleSheet, TextInput, Text, TouchableOpacity, View} from 'react-native';
 
 class Viachani extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            fieldText: '',
             fieldTextValidate: true,
-            errorMsg: '',
+            errorMsg: ' ',
         }
     }
 
@@ -24,10 +24,19 @@ class Viachani extends Component {
             PropTypes.number,
             PropTypes.shape({}),
         ]).isRequired,
-        editable: PropTypes.bool.isRequired,
+        error: PropTypes.oneOfType([
+            PropTypes.array,
+            PropTypes.number,
+            PropTypes.shape({}),
+        ]).isRequired,
+        editable: PropTypes.bool,
         label: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired,
+        myOnChageText: PropTypes.func,
+        numKeyboard: PropTypes.bool
+
     };
-    validate = (text, type) => {
+    validate = (text, type, err) => {
         num = /^\d+$/;
         alph = /^[a-zA-Z0-9]+$/;
         email = /\S+@\S+\.\S+/;
@@ -38,15 +47,13 @@ class Viachani extends Component {
                 stateChangetrue = () => {
                     this.setState({
                         fieldTextValidate: true,
-                        fieldText: text,
-                        errorMsg: ''
+                        errorMsg: ' '
                     });
                 };
-                stateChangefalse = () => {
+                stateChangefalse = (errmg) => {
                     this.setState({
                         fieldTextValidate: false,
-                        fieldText: text,
-                        errorMsg: 'please enter ' + field + ' field'
+                        errorMsg: err[errmg]
                     });
                     return true;
                 };
@@ -55,9 +62,20 @@ class Viachani extends Component {
                     case 'alphanumeric':
                         if (alph.test(text) || text.length === 0) {
                             stateChangetrue();
+                            return false;
                         }
                         else {
-                            stateChangefalse();
+                            stateChangefalse('alphanumeric');
+                            return true;
+                        }
+                        break;
+                    case 'numeric':
+                        if (num.test(text) || text.length === 0) {
+                            stateChangetrue();
+                            return false;
+                        }
+                        else {
+                            stateChangefalse('numeric');
                             return true;
                         }
                         break;
@@ -66,17 +84,17 @@ class Viachani extends Component {
                             stateChangetrue();
                         }
                         else {
-                            stateChangefalse();
+                            stateChangefalse('required');
                             return true;
                         }
                         break;
-                    case 'date/dmy':
+                    case 'datedmy':
 
                         if (dateformatdmy.test(text) || text.length === 0) {
                             stateChangetrue();
                         }
                         else {
-                            stateChangefalse();
+                            stateChangefalse('datedmy');
                             return true;
                         }
                         break;
@@ -85,7 +103,7 @@ class Viachani extends Component {
                             stateChangetrue();
                         }
                         else {
-                            stateChangefalse();
+                            stateChangefalse('email');
                             return true;
                         }
                         break;
@@ -94,15 +112,13 @@ class Viachani extends Component {
                             if (text.length > field.maxLength || !text.length === 0) {
                                 this.setState({
                                     fieldTextValidate: false,
-                                    fieldText: text,
-                                    errorMsg: 'please enter max ' + field.maxLength + ' char'
+                                    errorMsg: err['maxLength'] + ' ' + field.maxLength
                                 })
                                 return true;
                             } else {
                                 this.setState({
                                     fieldTextValidate: true,
-                                    fieldText: text,
-                                    errorMsg: ''
+                                    errorMsg: ' '
                                 })
                             }
                         } else if (field.minLength) {
@@ -110,14 +126,14 @@ class Viachani extends Component {
                                 this.setState({
                                     fieldTextValidate: false,
                                     fieldText: text,
-                                    errorMsg: 'please enter min ' + field.minLength + ' char'
+                                    errorMsg: err['minLength'] + ' ' + field.minLength
                                 })
                                 return true;
                             } else {
                                 this.setState({
                                     fieldTextValidate: true,
                                     fieldText: text,
-                                    errorMsg: ''
+                                    errorMsg: ' '
                                 })
                             }
                         }
@@ -127,8 +143,9 @@ class Viachani extends Component {
         }
 
     };
+
     render = () => {
-        const {textfieldStyles, editable, rules, label, placeholder} = this.props;
+        const {textfieldStyles, editable, rules, label, placeholder, value, myOnChageText, error, numKeyboard} = this.props;
 
         return (
             <View>
@@ -138,11 +155,16 @@ class Viachani extends Component {
                 <TextInput style={[styles.expText, textfieldStyles,
                     !this.state.fieldTextValidate ? styles.error : null]}
                            underlineColorAndroid='rgba(0,0,0,0)'
+                           autoCorrect={false}
                            placeholder={placeholder}
-                           editable={editable}
-                           value={this.state.fieldText}
+                           editable={editable && true}
+                           value={value}
+                           keyboardType={numKeyboard ? 'numeric' : null}
                            placeholderTextColor="#BEBEBE"
-                           onChangeText={(text) => this.validate(text, rules)}
+                           onChangeText={(text) => {
+                               (this.validate(text, rules, error));
+                               myOnChageText(text)
+                           }}
                 />
                 <Text style={styles.errorMsg}>{this.state.errorMsg}</Text>
             </View>
@@ -162,23 +184,21 @@ const styles = StyleSheet.create({
         color: 'black',
         marginRight: 10,
         height: 30,
-        paddingVertical: 3
     },
     expText: {
         backgroundColor: 'rgba(255, 255,255,0.2)',
         borderRadius: 5,
         paddingHorizontal: 6,
-        width: 250,
-        fontWeight: '500',
+        width: 300,
         fontSize: 16,
         color: 'black',
         paddingVertical: 3,
-        height: 30,
+        borderWidth: 1,
+        height: 30
     },
     error: {
         borderWidth: 1,
         borderColor: 'red',
-        backgroundColor: '#FDEDEC'
     },
     errorMsg: {
         color: 'red',

@@ -20,55 +20,102 @@ npm i -S viachani-validator
 ```bash
 
 import React from 'react';
-import Viachani from 'viachani-validator';
- 
-class MyApp extends React.Component {
-  render() {
-    return (
-         <View style={styles.container}>
-              <Viachani label={'Name:'}
-                        editable={true}
-                        placeholder={'name'}
-                        textfieldStyles={styles.text}
-                        rules={['alphanumeric',{maxLength:5},{minLength:2}]}
-                        />
-              <Viachani label={'Email:'}
-                        editable={true}
-                        placeholder={'example@dot.com'}
-                        textfieldStyles={styles.text}
-                        rules={['email',{maxLength:10},'required']}
-              />
-              <Viachani label={'Date:'}
-                        editable={true}
-                        placeholder={'12/04/2012'}
-                        textfieldStyles={styles.text}
-                        rules={['date/dmy']}
-              />
-          </View>
-    );
-  }
+import {StyleSheet, Text, View} from 'react-native';
+import Viachani from "viachani-validator";
+
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            surname: '',
+            email: '',
+            dob: '',
+            errorMsg: {
+                alphanumeric: 'must be alphanumeric value',
+                numeric: 'must be numeric value',
+                required: 'required field',
+                minLength: 'required min characters',
+                maxLength: 'must be max characters',
+                email: 'invalid email format',
+                datedmy: 'invalid dd.mm.yyyy format'
+            }
+
+        }
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Viachani label={'Name:'}
+                          placeholder={'name'}
+                          value={this.state.name}
+                          myOnChageText={text => {
+                              this.setState({name: text})
+                          }}
+                          textfieldStyles={styles.text}
+                          rules={['alphanumeric', {maxLength: 10}, 'required']}
+                          error={this.state.errorMsg}
+                />
+                <Viachani label={'Surname:'}
+                          editable={false}
+                          placeholder={'surname'}
+                          value={this.state.surname}
+                          myOnChageText={text => {
+                              this.setState({surname: text})
+                          }}
+                          textfieldStyles={styles.text}
+                          rules={['alphanumeric', {maxLength: 10}, {minLength: 3}, 'required']}
+                          error={this.state.errorMsg}
+                />
+                <Viachani label={'DOB:'}
+                          placeholder={'dd.mm.yyyy'}
+                          value={this.state.dob}
+                          myOnChageText={text => {
+                              this.setState({dob: text})
+                          }}
+                          numKeyboard={true}
+                          textfieldStyles={styles.text}
+                          rules={['datedmy', {maxLength: 10}, 'required']}
+                          error={this.state.errorMsg}
+                />
+                <Viachani label={'Email:'}
+                          placeholder={'sample@mail.com'}
+                          value={this.state.email}
+                          myOnChageText={text => {
+                              this.setState({email: text})
+                          }}
+                          textfieldStyles={styles.text}
+                          rules={[{maxLength: 20}, 'email']}
+                          error={this.state.errorMsg}
+                />
+            </View>
+        );
+    }
 }
+
 const styles = StyleSheet.create({
-  container: {
-           flex: 1,
-           alignItems: 'center',
-           justifyContent: 'center',
-  },
-  exp: {
-           width:90,
-           fontSize:16,
-           fontWeight:'500',
-           color:'black',
-           marginRight: 10,
-           height: 30,
-           paddingVertical: 3
-       },
-  text:{
-           backgroundColor: '#E5E7E9'
-       }
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        paddingTop: 30
+    },
+    exp: {
+        width: 90,
+        fontSize: 16,
+        fontWeight: '300',
+        color: 'black',
+        marginRight: 10,
+        height: 30,
+        paddingVertical: 3
+    },
+    text: {
+        backgroundColor: '#E5E7E9'
+    }
 });
+
 ```
-![alt text](https://s8.postimg.cc/lykt79gd1/rsz_img.png)
+![alt text](https://s8.postimg.cc/yhnicb2np/rsz_screenshot_20180830-111145.png)
 
 ## Supported Validation Rules
 
@@ -84,7 +131,7 @@ const styles = StyleSheet.create({
 
 | Rule        | Description                                                                                   |
 |-------------|-----------------------------------------------------------------------------------------------|
-| date/dmy     | check if the string is a  date format. It accepts dd.mm.yyy  dd-mm-yyy and dd/mm/yyyy format. |
+| datedmy     | check if the string is a  date format. It accepts dd.mm.yyy  dd-mm-yyy and dd/mm/yyyy format. |
 | alphaumeric | check if the string is an alphanumeric value.                                                 |
 | email       | check if the string is an email.                                                              |
 | numeric     | check if the string is an numeric value.                                                      |
